@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     EditText ed1;
     Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_Add, btn_Sub, btn_Mul, btn_Div, btn_calc, btn_dec, btn_clear;
     float Value1, Value2;
-    boolean mAddition, mSubtract, mMultiplication, mDivision;
+    boolean mAddition, mSubtract, mMultiplication, mDivision, done = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         if (view != btn_Add && view != btn_Sub && view != btn_Mul && view != btn_Div && view != btn_calc && view != btn_clear) {
             Button btn = (Button) view;
             String digit = btn.getText().toString();
+            String screen = ed1.getText().toString().trim();
 
             if (ed1.equals(null)) {
                 ed1.setText(digit);
@@ -60,74 +61,101 @@ public class MainActivity extends AppCompatActivity {
 
             if (view == btn_Add) {
                 if (ed1 == null) {
-                    ed1.setText("");
-                } else {
-                    Value1 = Float.parseFloat(ed1.getText() + "");
                     mAddition = true;
-                    ed1.setText(null);
+                    //ed1.setText("");
+                } else {
+                    try {
+                        Value1 = Float.parseFloat(ed1.getText() + "");
+                        mAddition = true;
+                        ed1.setText(null);
+                    } catch (NumberFormatException exep) {
+                        System.out.println(exep.getMessage());
+                    }
+
                 }
             }
 
             if (view == btn_Sub) {
-                Value1 = Float.parseFloat(ed1.getText() + "");
-                mSubtract = true;
-                ed1.setText(null);
+                if (ed1 == null) {
+                    mSubtract = true;
+                    //ed1.setText("");
+                } else {
+                    try {
+                        Value1 = Float.parseFloat(ed1.getText() + "");
+                        mSubtract = true;
+                        ed1.setText(null);
+                    } catch (NumberFormatException exep) {
+                        System.out.println(exep.getMessage());
+                    }
+
+                }
+
             }
 
             if (view == btn_Mul) {
-                Value1 = Float.parseFloat(ed1.getText() + "");
-                mMultiplication = true;
-                ed1.setText(null);
+                if (ed1 == null) {
+                    mMultiplication = true;
+                    //ed1.setText("");
+                } else {
+                    try {
+                        Value1 = Float.parseFloat(ed1.getText() + "");
+                        mMultiplication = true;
+                        ed1.setText(null);
+                    } catch (NumberFormatException exep) {
+                        System.out.println(exep.getMessage());
+                    }
+
+                }
+
             }
 
             if (view == btn_Div) {
-                Value1 = Float.parseFloat(ed1.getText() + "");
-                mDivision = true;
-                ed1.setText(null);
+                if (ed1 == null) {
+                    mDivision = true;
+                    //ed1.setText("");
+                } else {
+                    try {
+                        Value1 = Float.parseFloat(ed1.getText() + "");
+                        mDivision = true;
+                        ed1.setText(null);
+                    } catch (NumberFormatException exep) {
+                        System.out.println(exep.getMessage());
+                    }
+
+                }
+
             }
 
             if (view == btn_calc) {
-                Value2 = Float.parseFloat(ed1.getText() + "");
+                //String screen = ed1.getText().toString().trim();
+                //String num = ed1.getText().toString();
+                try {
+                    Value2 = Float.parseFloat(ed1.getText() + "");
 
-                if (mAddition == true) {
+                    if (mAddition == true) {
+                        ed1.setText(Value1 + Value2 + "");
+                        mAddition = false;
+                    }
 
-                    ed1.setText(Value1 + Value2 + "");
-                    mAddition = false;
-                }
+                    if (mSubtract == true) {
+                        ed1.setText(Value1 - Value2 + "");
+                        mSubtract = false;
+                    }
 
+                    if (mMultiplication == true) {
+                        ed1.setText(Value1 * Value2 + "");
+                        mMultiplication = false;
+                    }
 
-                if (mSubtract == true) {
-                    ed1.setText(Value1 - Value2 + "");
-                    mSubtract = false;
-                }
+                    if (mDivision == true) {
+                        ed1.setText(Value1 / Value2 + "");
+                        mDivision = false;
+                    }
 
-                if (mMultiplication == true) {
-                    ed1.setText(Value1 * Value2 + "");
-                    mMultiplication = false;
-                }
-
-                if (mDivision == true) {
-                    ed1.setText(Value1 / Value2 + "");
-                    mDivision = false;
+                } catch (NumberFormatException exep) {
+                    System.out.println(exep.getMessage());
                 }
             }
         }
-
-
-        /*Button btn = (Button) view;
-        String digit = btn.getText().toString();
-        String screen = tv.getText().toString().trim();
-
-        if(screen.equals("0")){
-            tv.setText(digit);
-        }
-        else{
-            tv.append(digit);
-        }*/
-
-        //screen += digit;
-
-        //Integer scr = Integer.parseInt(screen);
-        //tv.setText(scr);
     }
 }

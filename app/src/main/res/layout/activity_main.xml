@@ -16,20 +16,21 @@
         <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="91dp"
             android:ems="10"
             android:inputType="textPersonName" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="73dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:minHeight="68dp"
                 android:onClick="clickDigit"
                 android:text="7"
                 tools:visibility="visible" />
@@ -37,24 +38,27 @@
             <Button
                 android:id="@+id/button12"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:minHeight="68dip"
                 android:onClick="clickDigit"
                 android:text="8" />
 
             <Button
                 android:id="@+id/button10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:minHeight="68dip"
                 android:onClick="clickDigit"
                 android:text="9" />
 
             <Button
                 android:id="@+id/button11"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:minHeight="68dip"
                 android:onClick="clickDigit"
                 android:text="CE" />
 
@@ -62,13 +66,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="73dp"
+            android:minHeight="68dip"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button16"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="6" />
@@ -76,7 +81,7 @@
             <Button
                 android:id="@+id/button13"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="5" />
@@ -84,7 +89,7 @@
             <Button
                 android:id="@+id/button14"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="4" />
@@ -92,7 +97,7 @@
             <Button
                 android:id="@+id/button15"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="x" />
@@ -101,13 +106,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="73dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button17"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="3" />
@@ -115,7 +120,7 @@
             <Button
                 android:id="@+id/button18"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="2" />
@@ -123,7 +128,7 @@
             <Button
                 android:id="@+id/button19"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="1" />
@@ -131,7 +136,7 @@
             <Button
                 android:id="@+id/button20"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="/" />
@@ -140,13 +145,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="73dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button21"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="0" />
@@ -154,15 +159,16 @@
             <Button
                 android:id="@+id/button5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
-                android:text="." />
+                android:text="."
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button22"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="+" />
@@ -170,7 +176,7 @@
             <Button
                 android:id="@+id/button23"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="-" />
@@ -178,7 +184,7 @@
             <Button
                 android:id="@+id/button24"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="clickDigit"
                 android:text="=" />
