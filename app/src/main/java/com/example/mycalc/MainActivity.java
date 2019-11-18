@@ -4,14 +4,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    //TextView tv;
-    EditText ed1;
-    Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_Add, btn_Sub, btn_Mul, btn_Div, btn_calc, btn_dec, btn_clear;
+    private boolean opPressed = false;
+    private double nb1 = 0;
+    private int n2Index = 0;
+    private char opCourant;
+    private int count = 0;
+    TextView tv, scr;
+    EditText resume;
+    Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_Add, btn_Sub, btn_Mul, btn_Div, btn_calc, btn_dec, btn_clear, btn_undo, btn_openPar, btn_closePar, btn_carre, btn_sqrt;
     float Value1, Value2;
     boolean mAddition, mSubtract, mMultiplication, mDivision, done = false;
 
@@ -39,123 +45,129 @@ public class MainActivity extends AppCompatActivity {
         btn_calc = findViewById(R.id.button24);
         btn_dec = findViewById(R.id.button5);
         btn_clear = findViewById(R.id.button11);
-        ed1 = findViewById(R.id.editText);
+        btn_undo = findViewById(R.id.button4);
+        btn_openPar = findViewById(R.id.button1);
+        btn_closePar = findViewById(R.id.button2);
+        btn_carre = findViewById(R.id.button7);
+        btn_sqrt = findViewById(R.id.button8);
+
+        resume = findViewById(R.id.editText);
+        resume.setText("");
+        final View.OnClickListener calListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int id = v.getId();
+                switch (id) {
+                    //equals
+                    case R.id.button24:
+                        if (opPressed) {
+                            if (opCourant == '+') {
+                                String contenu = resume.getText().toString();
+                                double nb2 = Double.parseDouble(contenu.substring(n2Index, contenu.length()));
+                                nb2 += nb1;
+                                resume.setText(String.valueOf(nb2));
+
+                            }
+                            if (opCourant == '-') {
+                                String contenu = resume.getText().toString();
+                                double nb2 = Double.parseDouble(contenu.substring(n2Index, contenu.length()));
+                                nb2 = nb1 - nb2;
+                                resume.setText(String.valueOf(nb2));
+
+                            }
+                            if (opCourant == '/') {
+                                String contenu = resume.getText().toString();
+                                double nb2 = Double.parseDouble(contenu.substring(n2Index, contenu.length()));
+                                nb2 = nb1/nb2;
+                                resume.setText(String.valueOf(nb2));
+                            }
+                            if (opCourant == '*') {
+                                String contenu = resume.getText().toString();
+                                double nb2 = Double.parseDouble(contenu.substring(n2Index, contenu.length()));
+                                nb2 = nb1 * nb2;
+                                resume.setText(String.valueOf(nb2));
+                            }
+                        }
+                        break;
+                    //multiplication
+                    case R.id.button15:
+                        //  screen.append(" * ");
+                        String contenuM = resume.getText().toString();
+                        n2Index = resume.length() + 1;
+                        resume.append("*");
+                        nb1 = Double.parseDouble(contenuM);
+                        opPressed = true;
+                        opCourant = '*';
+                        break;
+                    //soustraction
+                    case R.id.button23:
+                        // screen.setText("-");
+                        String contenu1 = resume.getText().toString();
+                        n2Index = resume.length() + 1;
+                        resume.append("-");
+                        nb1 = Double.parseDouble(contenu1);
+                        opPressed = true;
+                        opCourant = '-';
+                        break;
+                    //addition
+                    case R.id.button22:
+                        String contenu = resume.getText().toString();
+                        n2Index = resume.length() + 1;
+                        resume.append("+");
+                        nb1 = Double.parseDouble(contenu);
+                        opPressed = true;
+                        opCourant = '+';
+                        break;
+                    //division
+                    case R.id.button20:
+                        // screen.append("/");
+                        String contenuD = resume.getText().toString();
+                        n2Index = resume.length() + 1;
+                        resume.append("/");
+                        nb1 = Double.parseDouble(contenuD);
+                        opPressed = true;
+                        opCourant = '/';
+                        break;
+                }
+            }
+        };
+
+        btn_Mul.setOnClickListener(calListener);
+        btn_Add.setOnClickListener(calListener);
+        btn_Sub.setOnClickListener(calListener);
+        btn_Div.setOnClickListener(calListener);
+        btn_calc.setOnClickListener(calListener);
 
     }
 
     public void clickDigit(View view) {
-        if (view != btn_Add && view != btn_Sub && view != btn_Mul && view != btn_Div && view != btn_calc && view != btn_clear) {
-            Button btn = (Button) view;
-            String digit = btn.getText().toString();
-            String screen = ed1.getText().toString().trim();
+        //if (view != btn_Add && view != btn_Sub && view != btn_Mul && view != btn_Div && view != btn_calc && view != btn_clear && view != btn_undo && view != btn_carre && view != btn_sqrt) {
 
-            if (ed1.equals(null)) {
-                ed1.setText(digit);
-            } else {
-                ed1.append(digit);
-            }
+        Button btn = (Button) view;
+        String digit = btn.getText().toString();
+        String screen = resume.getText().toString().trim();
+
+        if (resume.equals(null)) {
+            resume.setText(digit);
         } else {
-            if (view == btn_clear) {
-                ed1.setText(null);
-            }
-
-            if (view == btn_Add) {
-                if (ed1 == null) {
-                    mAddition = true;
-                    //ed1.setText("");
-                } else {
-                    try {
-                        Value1 = Float.parseFloat(ed1.getText() + "");
-                        mAddition = true;
-                        ed1.setText(null);
-                    } catch (NumberFormatException exep) {
-                        System.out.println(exep.getMessage());
-                    }
-
-                }
-            }
-
-            if (view == btn_Sub) {
-                if (ed1 == null) {
-                    mSubtract = true;
-                    //ed1.setText("");
-                } else {
-                    try {
-                        Value1 = Float.parseFloat(ed1.getText() + "");
-                        mSubtract = true;
-                        ed1.setText(null);
-                    } catch (NumberFormatException exep) {
-                        System.out.println(exep.getMessage());
-                    }
-
-                }
-
-            }
-
-            if (view == btn_Mul) {
-                if (ed1 == null) {
-                    mMultiplication = true;
-                    //ed1.setText("");
-                } else {
-                    try {
-                        Value1 = Float.parseFloat(ed1.getText() + "");
-                        mMultiplication = true;
-                        ed1.setText(null);
-                    } catch (NumberFormatException exep) {
-                        System.out.println(exep.getMessage());
-                    }
-
-                }
-
-            }
-
-            if (view == btn_Div) {
-                if (ed1 == null) {
-                    mDivision = true;
-                    //ed1.setText("");
-                } else {
-                    try {
-                        Value1 = Float.parseFloat(ed1.getText() + "");
-                        mDivision = true;
-                        ed1.setText(null);
-                    } catch (NumberFormatException exep) {
-                        System.out.println(exep.getMessage());
-                    }
-
-                }
-
-            }
-
-            if (view == btn_calc) {
-                //String screen = ed1.getText().toString().trim();
-                //String num = ed1.getText().toString();
-                try {
-                    Value2 = Float.parseFloat(ed1.getText() + "");
-
-                    if (mAddition == true) {
-                        ed1.setText(Value1 + Value2 + "");
-                        mAddition = false;
-                    }
-
-                    if (mSubtract == true) {
-                        ed1.setText(Value1 - Value2 + "");
-                        mSubtract = false;
-                    }
-
-                    if (mMultiplication == true) {
-                        ed1.setText(Value1 * Value2 + "");
-                        mMultiplication = false;
-                    }
-
-                    if (mDivision == true) {
-                        ed1.setText(Value1 / Value2 + "");
-                        mDivision = false;
-                    }
-
-                } catch (NumberFormatException exep) {
-                    System.out.println(exep.getMessage());
-                }
-            }
+            resume.append(digit);
         }
+
+    }
+
+
+    public void FillResume(View v) {
+        Button btn = (Button) v;
+        String OldResume = resume.getText().toString().trim();
+        resume.setText(OldResume + btn.getText());
+    }
+
+    public void ClearResume() {
+        resume.setText("");
+    }
+
+    public void ClickClear(View view) {
+        resume.setText("");
+        ClearResume();
     }
 }
